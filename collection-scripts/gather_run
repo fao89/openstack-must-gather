@@ -36,6 +36,7 @@ source "${DIR_NAME}/gather_services_cm"
 source "${DIR_NAME}/gather_secrets"
 source "${DIR_NAME}/gather_sub"
 source "${DIR_NAME}/gather_ctlplane_resources"
+source "${DIR_NAME}/gather_by_label"
 
 for NS in "${DEFAULT_NAMESPACES[@]}"; do
     # get Services Config (CM)
@@ -44,6 +45,8 @@ for NS in "${DEFAULT_NAMESPACES[@]}"; do
     gather_secrets "$NS"
     # get subscriptions / installplans / packagemanifests / CSVs
     gather_sub "$NS"
+    # get resources by label
+    gather_by_label "$NS"
     # get routes, services, jobs, deployments
     # daemonsets, statefulsets, replicasets,
     # pods (describe and get logs)
